@@ -1,8 +1,4 @@
 ## server
 
-server link : https://github.com/mir-hussain/moon-tech-server
+server link : https://github.com/muradtheOZ/useReducer_server
 
-
-## Starter pack
-
-starter pack : https://github.com/mir-hussain/moon-tech-starter-pack
