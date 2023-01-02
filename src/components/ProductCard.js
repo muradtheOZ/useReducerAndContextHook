@@ -1,9 +1,9 @@
 import React from "react";
-import { BiListPlus } from "react-icons/bi";
+import { BiListMinus, BiListPlus } from "react-icons/bi";
 import { useProducts } from "../context/ProductProvider";
 import { actionTypes } from "../state/ProductState/actionTypes";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product,remove }) => {
   const { dispatch } = useProducts();
 
   return (
@@ -32,12 +32,27 @@ const ProductCard = ({ product }) => {
         >
           Add to cart
         </button>
-        <button
+        {
+          remove?
+          <button
           title='Add to wishlist'
           className='bg-indigo-500  py-1 px-2 rounded-full'
+          onClick={()=>
+            dispatch({type: actionTypes.REMOVE_FROM_WISHLIST,payload:product})
+          }
         >
-          <BiListPlus className='text-white' />
+          <BiListMinus className='text-white' />
         </button>
+        :
+        <button
+        title='Add to wishlist'
+        className='bg-indigo-500  py-1 px-2 rounded-full'
+        onClick={()=>dispatch({type: actionTypes.ADD_TO_WISHLIST,payload:product})}
+      >
+        <BiListPlus className='text-white' />
+      </button>
+        }
+       
       </div>
     </div>
   );

@@ -9,6 +9,9 @@ export const initialState = {
 };
 
 export const productReducer = (state, action) => {
+  console.log("This is the payload", action.payload);
+  let id = action.payload;
+  console.log("This is the id", id);
   switch (action.type) {
     case actionTypes.FETCHING_START:
       return {
@@ -33,6 +36,17 @@ export const productReducer = (state, action) => {
       return {
         ...state,
         cart: [...state.cart, action.payload],
+      };
+      case actionTypes.ADD_TO_WISHLIST:
+      return {
+        ...state,
+        wishlist: [...state.wishlist, action.payload],
+      };
+      // remove product from wishlist
+      case actionTypes.REMOVE_FROM_WISHLIST:
+      return {
+        ...state,
+        wishlist: state.wishlist.filter((product) => product._id !== action.payload._id),
       };
     default:
       return state;
